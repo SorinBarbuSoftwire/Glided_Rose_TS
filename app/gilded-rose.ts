@@ -19,11 +19,14 @@ export class GildedRose {
 
     updateQuality() {
         for (let i = 0; i < this.items.length; i++) {
+            // Keep
+            if (this.items[i].name === 'Sulfuras, Hand of Ragnaros') {
+                continue;
+            }
             /* Quality */
             // Decrease
             if (this.items[i].name !== 'Aged Brie' &&
-                this.items[i].name !== 'Backstage passes to a TAFKAL80ETC concert' &&
-                this.items[i].name !== 'Sulfuras, Hand of Ragnaros') {
+                this.items[i].name !== 'Backstage passes to a TAFKAL80ETC concert') {
                 // Base
                 this.items[i].quality -= 1;
                 if (this.items[i].name === 'Conjured Mana Cake') {
@@ -44,26 +47,23 @@ export class GildedRose {
             }
             else {
                 // Increase
-                if (this.items[i].name !== 'Sulfuras, Hand of Ragnaros') {
-                    // Base
-                    this.items[i].quality = this.items[i].quality + 1;
+                // Base
+                this.items[i].quality = this.items[i].quality + 1;
 
-                    if (this.items[i].name === 'Aged Brie' && this.items[i].sellIn < 0) {
-                        this.items[i].quality = this.items[i].quality + 1;
+                if (this.items[i].name === 'Aged Brie' && this.items[i].sellIn < 0) {
+                    this.items[i].quality = this.items[i].quality + 1;
+                }
+                if (this.items[i].name === 'Backstage passes to a TAFKAL80ETC concert') {
+                    if (this.items[i].sellIn < 11) {
+                        this.items[i].quality = this.items[i].quality + 1
                     }
-                    if (this.items[i].name === 'Backstage passes to a TAFKAL80ETC concert') {
-                        if (this.items[i].sellIn < 11) {
-                            this.items[i].quality = this.items[i].quality + 1
-                        }
-                        if (this.items[i].sellIn < 6) {
-                            this.items[i].quality = this.items[i].quality + 1
-                        }
-                        if (this.items[i].sellIn <= 0) {
-                            this.items[i].quality = 0;
-                        }
+                    if (this.items[i].sellIn < 6) {
+                        this.items[i].quality = this.items[i].quality + 1
+                    }
+                    if (this.items[i].sellIn <= 0) {
+                        this.items[i].quality = 0;
                     }
                 }
-                // Keep
             }
             // Boundary check
             if (this.items[i].quality > 50) {
