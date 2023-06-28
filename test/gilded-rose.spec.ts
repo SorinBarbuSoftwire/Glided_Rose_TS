@@ -160,4 +160,37 @@ describe('Gilded Rose - Unit Tests', function () {
         chaiModule.expect(updatedItems[6].quality).to.equal(0);
     });
 
+    it('Sellin', function() {
+        const initialItems = [
+            new glidedRoseModule.Item('Product1', 10, 10),
+            new glidedRoseModule.Item('Product2', 0, 10),
+            new glidedRoseModule.Item('Product3', 1, 0),
+            new glidedRoseModule.Item('Aged Brie', -1, 0),
+            new glidedRoseModule.Item('Sulfuras, Hand of Ragnaros', -10, 40)
+        ];
+        const gildedRose = new glidedRoseModule.GildedRose(initialItems);
+        const updatedItems = gildedRose.updateQuality();
+
+        // Item 0
+        chaiModule.expect(updatedItems[0].name).to.equal('Product1');
+        chaiModule.expect(updatedItems[0].sellIn).to.equal(9);
+        chaiModule.expect(updatedItems[0].quality).to.equal(9);
+        // Item 1
+        chaiModule.expect(updatedItems[1].name).to.equal('Product2');
+        chaiModule.expect(updatedItems[1].sellIn).to.equal(-1);
+        chaiModule.expect(updatedItems[1].quality).to.equal(8);
+        // Item 2
+        chaiModule.expect(updatedItems[2].name).to.equal('Product3');
+        chaiModule.expect(updatedItems[2].sellIn).to.equal(0);
+        chaiModule.expect(updatedItems[2].quality).to.equal(0);
+        // Item 3
+        chaiModule.expect(updatedItems[3].name).to.equal('Aged Brie');
+        chaiModule.expect(updatedItems[3].sellIn).to.equal(-2);
+        chaiModule.expect(updatedItems[3].quality).to.equal(2);
+        // Item 4
+        chaiModule.expect(updatedItems[4].name).to.equal('Sulfuras, Hand of Ragnaros');
+        chaiModule.expect(updatedItems[4].sellIn).to.equal(-10);
+        chaiModule.expect(updatedItems[4].quality).to.equal(40);
+    });
+
 });
