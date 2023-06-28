@@ -26,8 +26,15 @@ export class GildedRose {
                 this.items[i].name !== 'Sulfuras, Hand of Ragnaros') {
                 // Base
                 this.items[i].quality -= 1;
+                if (this.items[i].name === 'Conjured Mana Cake') {
+                    this.items[i].quality -= 1;
+                }
+
                 if (this.items[i].sellIn <= 0) {
                     this.items[i].quality -= 1;
+                    if (this.items[i].name === 'Conjured Mana Cake') {
+                        this.items[i].quality -= 1;
+                    }
                 }
                 // Boundary check
                 if (this.items[i].quality < 0) {
@@ -40,6 +47,7 @@ export class GildedRose {
                 if (this.items[i].name !== 'Sulfuras, Hand of Ragnaros') {
                     // Base
                     this.items[i].quality = this.items[i].quality + 1;
+
                     if (this.items[i].name === 'Aged Brie' && this.items[i].sellIn < 0) {
                         this.items[i].quality = this.items[i].quality + 1;
                     }

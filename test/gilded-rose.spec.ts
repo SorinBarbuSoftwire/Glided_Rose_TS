@@ -193,4 +193,32 @@ describe('Gilded Rose - Unit Tests', function () {
         chaiModule.expect(updatedItems[4].quality).to.equal(40);
     });
 
+    it('Conjured Mana Cake', function() {
+        const initialItems = [
+            new glidedRoseModule.Item('Conjured Mana Cake', 10, 10),
+            new glidedRoseModule.Item('Conjured Mana Cake', -10, 10),
+            new glidedRoseModule.Item('Conjured Mana Cake', 10, 1),
+            new glidedRoseModule.Item('Conjured Mana Cake', 10, 0),
+        ];
+        const gildedRose = new glidedRoseModule.GildedRose(initialItems);
+        const updatedItems = gildedRose.updateQuality();
+
+        // Item 0
+        chaiModule.expect(updatedItems[0].name).to.equal('Conjured Mana Cake');
+        chaiModule.expect(updatedItems[0].sellIn).to.equal(9);
+        chaiModule.expect(updatedItems[0].quality).to.equal(8);
+        // Item 1
+        chaiModule.expect(updatedItems[1].name).to.equal('Conjured Mana Cake');
+        chaiModule.expect(updatedItems[1].sellIn).to.equal(-11);
+        chaiModule.expect(updatedItems[1].quality).to.equal(6);
+        // Item 2
+        chaiModule.expect(updatedItems[2].name).to.equal('Conjured Mana Cake');
+        chaiModule.expect(updatedItems[2].sellIn).to.equal(9);
+        chaiModule.expect(updatedItems[2].quality).to.equal(0);
+        // Item 3
+        chaiModule.expect(updatedItems[3].name).to.equal('Conjured Mana Cake');
+        chaiModule.expect(updatedItems[3].sellIn).to.equal(9);
+        chaiModule.expect(updatedItems[3].quality).to.equal(0);
+    });
+
 });
