@@ -75,7 +75,7 @@ describe('Gilded Rose - Golden Master Test', function () {
 
 describe('Gilded Rose - Unit Tests', function () {
 
-    it('Decrease Quality', function() {
+    it('Quality - Decrease', function() {
         const initialItems = [
             new glidedRoseModule.Item('Product1', 10, 10),
             new glidedRoseModule.Item('Product2', 0, 10),
@@ -112,6 +112,42 @@ describe('Gilded Rose - Unit Tests', function () {
         chaiModule.expect(updatedItems[5].name).to.equal('Backstage passes to a TAFKAL80ETC concert');
         chaiModule.expect(updatedItems[5].sellIn).to.equal(4);
         chaiModule.expect(updatedItems[5].quality).to.equal(50);
+    });
+
+    it('Quality - Keep', function() {
+        const initialItems = [
+            new glidedRoseModule.Item('Sulfuras, Hand of Ragnaros', 10, 40),
+            new glidedRoseModule.Item('Sulfuras, Hand of Ragnaros', -10, 40)
+        ];
+        const gildedRose = new glidedRoseModule.GildedRose(initialItems);
+        const updatedItems = gildedRose.updateQuality();
+
+        // Item 0
+        chaiModule.expect(updatedItems[0].name).to.equal('Sulfuras, Hand of Ragnaros');
+        chaiModule.expect(updatedItems[0].sellIn).to.equal(10);
+        chaiModule.expect(updatedItems[0].quality).to.equal(40);
+        // Item 1
+        chaiModule.expect(updatedItems[1].name).to.equal('Sulfuras, Hand of Ragnaros');
+        chaiModule.expect(updatedItems[1].sellIn).to.equal(-10);
+        chaiModule.expect(updatedItems[1].quality).to.equal(40);
+    });
+
+    it('Quality - Increase', function() {
+        const initialItems = [
+            new glidedRoseModule.Item('Sulfuras, Hand of Ragnaros', 10, 40),
+            new glidedRoseModule.Item('Sulfuras, Hand of Ragnaros', -10, 40)
+        ];
+        const gildedRose = new glidedRoseModule.GildedRose(initialItems);
+        const updatedItems = gildedRose.updateQuality();
+
+        // Item 0
+        chaiModule.expect(updatedItems[0].name).to.equal('Sulfuras, Hand of Ragnaros');
+        chaiModule.expect(updatedItems[0].sellIn).to.equal(10);
+        chaiModule.expect(updatedItems[0].quality).to.equal(40);
+        // Item 1
+        chaiModule.expect(updatedItems[1].name).to.equal('Sulfuras, Hand of Ragnaros');
+        chaiModule.expect(updatedItems[1].sellIn).to.equal(-10);
+        chaiModule.expect(updatedItems[1].quality).to.equal(40);
     });
 
 });
