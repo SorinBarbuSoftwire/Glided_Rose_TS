@@ -79,10 +79,7 @@ describe('Gilded Rose - Unit Tests', function () {
         const initialItems = [
             new glidedRoseModule.Item('Product1', 10, 10),
             new glidedRoseModule.Item('Product2', 0, 10),
-            new glidedRoseModule.Item('Aged Brie', 1, 10),
-            new glidedRoseModule.Item('Aged Brie', 0, 10),
-            new glidedRoseModule.Item('Aged Brie', 0, 49),
-            new glidedRoseModule.Item('Backstage passes to a TAFKAL80ETC concert', 5, 48),
+            new glidedRoseModule.Item('Product3', 1, 0),
 
         ];
         const gildedRose = new glidedRoseModule.GildedRose(initialItems);
@@ -97,21 +94,9 @@ describe('Gilded Rose - Unit Tests', function () {
         chaiModule.expect(updatedItems[1].sellIn).to.equal(-1);
         chaiModule.expect(updatedItems[1].quality).to.equal(8);
         // Item 2
-        chaiModule.expect(updatedItems[2].name).to.equal('Aged Brie');
+        chaiModule.expect(updatedItems[2].name).to.equal('Product3');
         chaiModule.expect(updatedItems[2].sellIn).to.equal(0);
-        chaiModule.expect(updatedItems[2].quality).to.equal(11);
-        // Item 3
-        chaiModule.expect(updatedItems[3].name).to.equal('Aged Brie');
-        chaiModule.expect(updatedItems[3].sellIn).to.equal(-1);
-        chaiModule.expect(updatedItems[3].quality).to.equal(12);
-        // Item 4
-        chaiModule.expect(updatedItems[4].name).to.equal('Aged Brie');
-        chaiModule.expect(updatedItems[4].sellIn).to.equal(-1);
-        chaiModule.expect(updatedItems[4].quality).to.equal(50);
-        // Item 5
-        chaiModule.expect(updatedItems[5].name).to.equal('Backstage passes to a TAFKAL80ETC concert');
-        chaiModule.expect(updatedItems[5].sellIn).to.equal(4);
-        chaiModule.expect(updatedItems[5].quality).to.equal(50);
+        chaiModule.expect(updatedItems[2].quality).to.equal(0);
     });
 
     it('Quality - Keep', function() {
