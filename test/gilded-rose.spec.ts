@@ -1,9 +1,9 @@
 const chaiModule = require('chai');
 const glidedRoseModule = require('../app/gilded-rose');
 
-describe('Gilded Rose Tests', function () {
+describe('Gilded Rose - Golden Master Test', function () {
 
-    it('General test', function() {
+    it('General Test', function() {
         const initialItems = [
             new glidedRoseModule.Item('Product1', 10, 10),
             new glidedRoseModule.Item('Product2', 0, 10),
@@ -70,6 +70,22 @@ describe('Gilded Rose Tests', function () {
         chaiModule.expect(updatedItems[11].name).to.equal('Backstage passes to a TAFKAL80ETC concert');
         chaiModule.expect(updatedItems[11].sellIn).to.equal(-1);
         chaiModule.expect(updatedItems[11].quality).to.equal(0);
+    });
+});
+
+describe('Gilded Rose - Unit Tests', function () {
+
+    it('_ test', function() {
+        const initialItems = [
+            new glidedRoseModule.Item('Product1', 10, 10),
+        ];
+        const gildedRose = new glidedRoseModule.GildedRose(initialItems);
+        const updatedItems = gildedRose.updateQuality();
+
+        // Item 0
+        chaiModule.expect(updatedItems[0].name).to.equal('Product1');
+        chaiModule.expect(updatedItems[0].sellIn).to.equal(9);
+        chaiModule.expect(updatedItems[0].quality).to.equal(9);
     });
 
 });
