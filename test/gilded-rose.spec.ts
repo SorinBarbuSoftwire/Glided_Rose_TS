@@ -53,51 +53,66 @@ describe('Gilded Rose - Unit Tests', function () {
         chaiModule.expect(updatedItems[1].quality).to.equal(40);
     });
 
-    it('Quality - Increase', function() {
-        // Given
-        const initialItems = [
-            new glidedRoseModule.Item('Aged Brie', 10, 20),
-            new glidedRoseModule.Item('Aged Brie', -10, 20),
-            new glidedRoseModule.Item('Aged Brie', -20, 49),
-            new glidedRoseModule.Item('Backstage passes to a TAFKAL80ETC concert', 20, 49),
-            new glidedRoseModule.Item('Backstage passes to a TAFKAL80ETC concert', 10, 48),
-            new glidedRoseModule.Item('Backstage passes to a TAFKAL80ETC concert', 5, 48),
-            new glidedRoseModule.Item('Backstage passes to a TAFKAL80ETC concert', -1, 30)
-        ];
-        const gildedRose = new glidedRoseModule.GildedRose(initialItems);
+    describe('Quality - Increase', function () {
+        it('Aged Brie', function() {
 
-        // When
-        const updatedItems = gildedRose.updateQuality();
+            // Given
+            const initialItems = [
+                new glidedRoseModule.Item('Aged Brie', 10, 20),
+                new glidedRoseModule.Item('Aged Brie', -10, 20),
+                new glidedRoseModule.Item('Aged Brie', -20, 49)
+            ];
+            const gildedRose = new glidedRoseModule.GildedRose(initialItems);
 
-        // Then
-        // Item 0
-        chaiModule.expect(updatedItems[0].name).to.equal('Aged Brie');
-        chaiModule.expect(updatedItems[0].sellIn).to.equal(9);
-        chaiModule.expect(updatedItems[0].quality).to.equal(21);
-        // Item 1
-        chaiModule.expect(updatedItems[1].name).to.equal('Aged Brie');
-        chaiModule.expect(updatedItems[1].sellIn).to.equal(-11);
-        chaiModule.expect(updatedItems[1].quality).to.equal(22);
-        // Item 2
-        chaiModule.expect(updatedItems[2].name).to.equal('Aged Brie');
-        chaiModule.expect(updatedItems[2].sellIn).to.equal(-21);
-        chaiModule.expect(updatedItems[2].quality).to.equal(50);
-        // Item 3
-        chaiModule.expect(updatedItems[3].name).to.equal('Backstage passes to a TAFKAL80ETC concert');
-        chaiModule.expect(updatedItems[3].sellIn).to.equal(19);
-        chaiModule.expect(updatedItems[3].quality).to.equal(50);
-        // Item 4
-        chaiModule.expect(updatedItems[4].name).to.equal('Backstage passes to a TAFKAL80ETC concert');
-        chaiModule.expect(updatedItems[4].sellIn).to.equal(9);
-        chaiModule.expect(updatedItems[4].quality).to.equal(50);
-        // Item 5
-        chaiModule.expect(updatedItems[5].name).to.equal('Backstage passes to a TAFKAL80ETC concert');
-        chaiModule.expect(updatedItems[5].sellIn).to.equal(4);
-        chaiModule.expect(updatedItems[5].quality).to.equal(50);
-        // Item 6
-        chaiModule.expect(updatedItems[6].name).to.equal('Backstage passes to a TAFKAL80ETC concert');
-        chaiModule.expect(updatedItems[6].sellIn).to.equal(-2);
-        chaiModule.expect(updatedItems[6].quality).to.equal(0);
+            // When
+            const updatedItems = gildedRose.updateQuality();
+
+            // Then
+            // Item 0
+            chaiModule.expect(updatedItems[0].name).to.equal('Aged Brie');
+            chaiModule.expect(updatedItems[0].sellIn).to.equal(9);
+            chaiModule.expect(updatedItems[0].quality).to.equal(21);
+            // Item 1
+            chaiModule.expect(updatedItems[1].name).to.equal('Aged Brie');
+            chaiModule.expect(updatedItems[1].sellIn).to.equal(-11);
+            chaiModule.expect(updatedItems[1].quality).to.equal(22);
+            // Item 2
+            chaiModule.expect(updatedItems[2].name).to.equal('Aged Brie');
+            chaiModule.expect(updatedItems[2].sellIn).to.equal(-21);
+            chaiModule.expect(updatedItems[2].quality).to.equal(50);
+        });
+        it('Backstage', function() {
+
+            // Given
+            const initialItems = [
+                new glidedRoseModule.Item('Backstage passes to a TAFKAL80ETC concert', 20, 49),
+                new glidedRoseModule.Item('Backstage passes to a TAFKAL80ETC concert', 10, 48),
+                new glidedRoseModule.Item('Backstage passes to a TAFKAL80ETC concert', 5, 48),
+                new glidedRoseModule.Item('Backstage passes to a TAFKAL80ETC concert', -1, 30)
+            ];
+            const gildedRose = new glidedRoseModule.GildedRose(initialItems);
+
+            // When
+            const updatedItems = gildedRose.updateQuality();
+
+            // Then
+            // Item 0
+            chaiModule.expect(updatedItems[0].name).to.equal('Backstage passes to a TAFKAL80ETC concert');
+            chaiModule.expect(updatedItems[0].sellIn).to.equal(19);
+            chaiModule.expect(updatedItems[0].quality).to.equal(50);
+            // Item 1
+            chaiModule.expect(updatedItems[1].name).to.equal('Backstage passes to a TAFKAL80ETC concert');
+            chaiModule.expect(updatedItems[1].sellIn).to.equal(9);
+            chaiModule.expect(updatedItems[1].quality).to.equal(50);
+            // Item 2
+            chaiModule.expect(updatedItems[2].name).to.equal('Backstage passes to a TAFKAL80ETC concert');
+            chaiModule.expect(updatedItems[2].sellIn).to.equal(4);
+            chaiModule.expect(updatedItems[2].quality).to.equal(50);
+            // Item 3
+            chaiModule.expect(updatedItems[3].name).to.equal('Backstage passes to a TAFKAL80ETC concert');
+            chaiModule.expect(updatedItems[3].sellIn).to.equal(-2);
+            chaiModule.expect(updatedItems[3].quality).to.equal(0);
+        });
     });
 
     it('Sellin', function() {
